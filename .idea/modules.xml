@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CardStack/CardStack.iml" filepath="$PROJECT_DIR$/CardStack/CardStack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DemoApp/DemoApp.iml" filepath="$PROJECT_DIR$/DemoApp/DemoApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/SwipeableCardStack.iml" filepath="$PROJECT_DIR$/SwipeableCardStack.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

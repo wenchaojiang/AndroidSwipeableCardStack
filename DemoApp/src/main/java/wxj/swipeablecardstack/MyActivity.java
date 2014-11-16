@@ -18,15 +18,21 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
 
         mCardStack = (CardStack)findViewById(R.id.container);
-        //wrong move it to adapter!!!
+
+        //
         mCardStack.setContentResource(R.layout.card_content);
         mCardStack.setStackMargin(20);
+
+        //
         mCardAdapter = new CardsDataAdapter(getApplicationContext(),0);
         mCardAdapter.add("test1");
         mCardAdapter.add("test2");
         mCardAdapter.add("test3");
         mCardAdapter.add("test4");
         mCardAdapter.add("test5");
+
+
+
         mCardStack.setAdapter(mCardAdapter);
     }
 
