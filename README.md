@@ -31,7 +31,7 @@ Usage
 -----
 
 
-
+Put CardStack in your layout file
 
 ```xml
  <com.wenchao.cardstack.CardStack
@@ -44,6 +44,9 @@ Usage
     />
 ```
 
+Create your card view layout file.
+
+Example: card_layout.xml, contain only a textview
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,10 +67,6 @@ The Following example extends a simeple ArrayAdapter<Stirng>, overriding ```getV
 ```java
 public class CardsDataAdapter extends ArrayAdapter<String> {
 
-    public CardsDataAdapter(Context context, int resource) {
-        super(context, resource);
-    }
-
     @Override
     public View getView(int position, final View contentView, ViewGroup parent){
         //supply the layout for your card
@@ -78,16 +77,15 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
 
 }
 ```
-get the CardStack instance in your activity
+Get the CardStack instance in your activity
 
-```
+```java
   protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
         mCardStack = (CardStack)findViewById(R.id.container);
 
-        //
         mCardStack.setContentResource(R.layout.card_content);
         mCardStack.setStackMargin(20);
         
@@ -112,7 +110,7 @@ Finally, set the adapter
 Listening to card stack event 
 implement CardStack.CardEventListener, and set it as listener ```mCardStack.setListener(yourListener);   ```
 
-```
+```java
 Class YourListener extends CardStack.CardEventListener{
     //implement card event interface
     @Override
