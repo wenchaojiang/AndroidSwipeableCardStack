@@ -1,9 +1,15 @@
 AndroidSwipeableCardStack
 =========================
+![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image.png)
+
+
 
 A tinder like swipeable card stack component. Provide "swipe to like" effects. Esay to costomize card views.
 
+!! currently only compatible to api level 19. There is a plan to make it compatible with at least api level 13 very soon.
+
 See youtube demo : https://www.youtube.com/watch?v=YsMnLJeouf8&feature=youtu.be
+A Demo App is also included in the source.
 
 
 Installation
@@ -152,3 +158,10 @@ Class YourListener extends CardStack.CardEventListener{
     }
 }
 ```
+
+
+TODO
+----
+
+1. deploy to maven central
+2. compatibility with api level 13
