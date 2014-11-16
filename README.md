@@ -1,6 +1,6 @@
 AndroidSwipeableCardStack
 =========================
-![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image.png)
+![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image.png ==250x)
 
 
 
