@@ -12,7 +12,7 @@ Installation
 1. Download released .aar file
 [Download current release] (https://github.com/wenchaojiang/AndroidSwipeableCardStack/releases/download/0.1.0/android-card-stack-0.1.0.aar)
 
-2. put it into your project lib file, "libs" for example.
+2. put it into your project lib dir, "libs" for example.
 
 3. put following lines to your gradle.build file
 ```
