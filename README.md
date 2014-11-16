@@ -27,7 +27,7 @@ dependencies {
 }
 ```
 
-Usage
+Configuration
 -----
 
 
@@ -108,6 +108,7 @@ Finally, set the adapter
 
 
 Listening to card stack event 
+----
 implement CardStack.CardEventListener, and set it as listener ```mCardStack.setListener(yourListener);   ```
 
 ```java
