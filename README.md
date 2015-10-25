@@ -1,7 +1,7 @@
 AndroidSwipeableCardStack
 =========================
 
-Change log
+Change log:
 Now it is compartible with api level 14
 Investigating with compartibility with api level 13
 
