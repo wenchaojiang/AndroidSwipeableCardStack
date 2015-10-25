@@ -71,8 +71,8 @@ public class CardUtils {
         for (int i = 0 ; i< rules.length; i++ ){
             copy.addRule(i,rules[i]);
         }
-        copy.setMarginStart(params.getMarginStart());
-        copy.setMarginEnd(params.getMarginEnd());
+        //copy.setMarginStart(params.getMarginStart());
+        //copy.setMarginEnd(params.getMarginEnd());
 
         return copy;
     }
