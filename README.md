@@ -1,5 +1,7 @@
 AndroidSwipeableCardStack
 =========================
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidSwipeableCardStack-green.svg?style=true)](https://android-arsenal.com/details/1/2724)
+
 
 Change log:
 Now it is compartible with api level 14
