@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '20.0.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         applicationId "wxj.swipeablecardstack"
@@ -31,5 +31,5 @@ dependencies {
     //compile(name:'android-card-stack-0.1.0', ext:'aar')
     //http://stackoverflow.com/questions/21170395/how-to-include-a-library-module-dependency-in-an-android-studio-project
     compile project(":CardStack")
-    compile 'com.android.support:appcompat-v7:20.0.+'
+    compile 'com.android.support:appcompat-v7:21.0.2'
 }
