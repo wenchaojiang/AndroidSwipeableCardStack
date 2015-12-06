@@ -1,7 +1,40 @@
-.gradle
-/.idea
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+# Eclipse
+.project
+.metadata
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*~.nib
+.classpath
+.settings/
+.loadpath
+**/bin/*
+**/gen/*
+testData
+testCache
+server.config
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# Android
+# built application files
+*.apk
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Other
 .DS_Store
-/build
+
+# Android Studio
+.idea
+*.iml
+*.ipr
+*.iws
+gen-external-apklibs
+
+# Gradle
+.gradle
+build
