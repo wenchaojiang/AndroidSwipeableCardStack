@@ -21,7 +21,18 @@ A Demo App is also included in the source.
 
 
 Installation
-----
+---
+Use jitpack
+```
+repositories {
+   maven { url "https://jitpack.io" }
+}
+
+dependencies {
+   compile 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.1'
+}
+```
+OR manually
 
 1. Download released .aar file
 [Download current release] (https://github.com/wenchaojiang/AndroidSwipeableCardStack/releases/download/0.1.1/android-card-stack-0.1.1.aar)
