@@ -4,8 +4,8 @@ AndroidSwipeableCardStack
 
 
 Change log:
-Now it is compartible with api level 14
-Investigating with compartibility with api level 13
+Now it is compatible with api level 14
+Investigating compatibility with api level 13
 
 
 
@@ -13,7 +13,7 @@ Investigating with compartibility with api level 13
 
 
 
-A tinder like swipeable card stack component. Provide "swipe to like" effects. Esay to costomize card views.
+A tinder like swipeable card stack component. Provide "swipe to like" effects. Easy to customize card views.
 
 
 See youtube demo : https://www.youtube.com/watch?v=YsMnLJeouf8&feature=youtu.be
@@ -71,7 +71,7 @@ Put CardStack in your layout file
 
 Create your card view layout file.
 
-Example: card_layout.xml, contain only a textview
+Example: card_layout.xml, contain only a TextView
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -87,7 +87,7 @@ Example: card_layout.xml, contain only a textview
 ```
 
 Implement your own adapter for the card stack. The CardStack will accept ArrayAdapter.
-The Following example extends a simeple ArrayAdapter<Stirng>, overriding ```getView()``` to supply your costomized card layout
+The Following example extends a simple ArrayAdapter<String>, overriding ```getView()``` to supply your customized card layout
 
 ```java
 public class CardsDataAdapter extends ArrayAdapter<String> {
@@ -167,7 +167,7 @@ Class YourListener extends CardStack.CardEventListener{
     }
 
     @Override
-    public void discarded(int direction,int direction) {
+    public void discarded(int id, int direction) {
        //this callback invoked when dismiss animation is finished. 
     }
     
