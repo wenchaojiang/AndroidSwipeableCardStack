@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import static com.wenchao.cardstack.CardUtils.*;
+
 public class CardAnimator{
     private static final String DEBUG_TAG = "CardAnimator";
     private static final int REMOTE_DISTANCE = 1000;
@@ -51,13 +53,13 @@ public class CardAnimator{
         }
 
         baseLayout = (RelativeLayout.LayoutParams)mCardCollection.get(0).getLayoutParams();
-        baseLayout = new RelativeLayout.LayoutParams(baseLayout);
+        baseLayout = cloneParams(baseLayout);
 
         initLayout();
 
         for (View v : mCardCollection){
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
-            RelativeLayout.LayoutParams paramsCopy =  new RelativeLayout.LayoutParams(params);
+            RelativeLayout.LayoutParams paramsCopy =  cloneParams(params);
             mLayoutsMap.put(v, paramsCopy);
         }
 
@@ -72,21 +74,21 @@ public class CardAnimator{
             if(index!=0){
                 index-=1;
             }
-            LayoutParams params = new LayoutParams(baseLayout);
+            LayoutParams params = cloneParams(baseLayout);
             v.setLayoutParams(params);
 
-            CardUtils.scale(v, -(size - index - 1) * 5);
-            CardUtils.move(v, index * mStackMargin, 0);
+            scale(v, -(size - index - 1) * 5);
+            move(v, index * mStackMargin, 0);
             v.setRotation(0);
         }
     }
 
     private void setupRemotes(){
         View topView = getTopView();
-        mRemoteLayouts[0] = CardUtils.getMoveParams(topView, REMOTE_DISTANCE, -REMOTE_DISTANCE);
-        mRemoteLayouts[1] = CardUtils.getMoveParams(topView, REMOTE_DISTANCE, REMOTE_DISTANCE);
-        mRemoteLayouts[2] = CardUtils.getMoveParams(topView, -REMOTE_DISTANCE, -REMOTE_DISTANCE);
-        mRemoteLayouts[3] = CardUtils.getMoveParams(topView, -REMOTE_DISTANCE, REMOTE_DISTANCE);
+        mRemoteLayouts[0] = getMoveParams(topView, REMOTE_DISTANCE, -REMOTE_DISTANCE);
+        mRemoteLayouts[1] = getMoveParams(topView, REMOTE_DISTANCE, REMOTE_DISTANCE);
+        mRemoteLayouts[2] = getMoveParams(topView, -REMOTE_DISTANCE, -REMOTE_DISTANCE);
+        mRemoteLayouts[3] = getMoveParams(topView, -REMOTE_DISTANCE, REMOTE_DISTANCE);
 
     }
 
@@ -132,7 +134,7 @@ public class CardAnimator{
 
         final View topView = getTopView();
         RelativeLayout.LayoutParams topParams = (RelativeLayout.LayoutParams) topView.getLayoutParams();
-        RelativeLayout.LayoutParams layout = new RelativeLayout.LayoutParams(topParams);
+        RelativeLayout.LayoutParams layout = cloneParams(topParams);
         ValueAnimator discardAnim = ValueAnimator.ofObject(new RelativeLayoutParamsEvaluator(),layout, mRemoteLayouts[direction]);
 
         discardAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -151,7 +153,7 @@ public class CardAnimator{
             if(v==topView) continue;
             final View nv = mCardCollection.get(i+1);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
-            RelativeLayout.LayoutParams endLayout = new RelativeLayout.LayoutParams(layoutParams);
+            RelativeLayout.LayoutParams endLayout = cloneParams(layoutParams);
             ValueAnimator layoutAnim = ValueAnimator.ofObject(new RelativeLayoutParamsEvaluator(),endLayout,mLayoutsMap.get(nv));
             layoutAnim.setDuration(250);
             layoutAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -175,7 +177,7 @@ public class CardAnimator{
                 mLayoutsMap = new HashMap<View,RelativeLayout.LayoutParams>();
                 for (View v : mCardCollection){
                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
-                    RelativeLayout.LayoutParams paramsCopy =  new RelativeLayout.LayoutParams(params);
+                    RelativeLayout.LayoutParams paramsCopy =  cloneParams(params);
                     mLayoutsMap.put(v, paramsCopy);
                 }
 
@@ -205,7 +207,7 @@ public class CardAnimator{
 
         for(final View v : mCardCollection){
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
-            RelativeLayout.LayoutParams endLayout = new RelativeLayout.LayoutParams(layoutParams);
+            RelativeLayout.LayoutParams endLayout = cloneParams(layoutParams);
             ValueAnimator layoutAnim = ValueAnimator.ofObject(new RelativeLayoutParamsEvaluator(),endLayout,mLayoutsMap.get(v));
             layoutAnim.setDuration(250);
             layoutAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -244,8 +246,8 @@ public class CardAnimator{
         for(View v : mCardCollection){
             int index  = mCardCollection.indexOf(v);
             if(v!=getTopView() && index != 0){
-                LayoutParams l = CardUtils.scaleFrom(v, mLayoutsMap.get(v), (int) (Math.abs(x_diff) * 0.05));
-                CardUtils.moveFrom(v, l, 0, (int) (Math.abs(x_diff) * 0.1));
+                LayoutParams l = scaleFrom(v, mLayoutsMap.get(v), (int) (Math.abs(x_diff) * 0.05));
+                moveFrom(v, l, 0, (int) (Math.abs(x_diff) * 0.1));
             }
         }
     }
