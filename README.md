@@ -29,13 +29,13 @@ repositories {
 }
 
 dependencies {
-   compile 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.2'
+   compile 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.3'
 }
 ```
 OR manually
 
 1. Download released .aar file
-[Download current release] (https://github.com/wenchaojiang/AndroidSwipeableCardStack/releases/download/0.1.1/android-card-stack-0.1.1.aar)
+[Download current release] (https://github.com/wenchaojiang/AndroidSwipeableCardStack/releases/)
 
 2. put it into your project lib dir, "libs" for example.
 
