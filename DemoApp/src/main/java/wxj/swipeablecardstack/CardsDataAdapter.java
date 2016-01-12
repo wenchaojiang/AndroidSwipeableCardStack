@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class CardsDataAdapter extends ArrayAdapter<String> {
 
-    public CardsDataAdapter(Context context, int resource) {
-        super(context, resource);
+    public CardsDataAdapter(Context context) {
+        super(context, R.layout.card_content);
     }
 
     @Override
