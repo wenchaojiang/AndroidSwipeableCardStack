@@ -40,11 +40,11 @@ public class CardStack extends RelativeLayout {
         // 2 | 3
         // swipe distance, most likely be used with height and width of a view ;
 
-        public boolean swipeEnd(int section,float distance);
-        public boolean swipeStart(int section,float distance);
-        public boolean swipeContinue(int section, float distanceX,float distanceY );
-        public void discarded(int mIndex, int direction);
-        public void topCardTapped();
+        boolean swipeEnd(int section,float distance);
+        boolean swipeStart(int section,float distance);
+        boolean swipeContinue(int section, float distanceX,float distanceY );
+        void discarded(int mIndex, int direction);
+        void topCardTapped();
     }
 
     public void discardTop(final int direction){
@@ -230,6 +230,10 @@ public class CardStack extends RelativeLayout {
         adapter.registerDataSetObserver(mOb);
 
         loadData();
+    }
+
+    public ArrayAdapter getAdapter() {
+        return mAdapter;
     }
 
     private void loadData(){
