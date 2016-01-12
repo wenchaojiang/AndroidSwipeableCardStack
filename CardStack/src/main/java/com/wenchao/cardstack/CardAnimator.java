@@ -50,10 +50,6 @@ public class CardAnimator{
 
             if(mBackgroundColor != -1) {
                 v.setBackgroundColor(mBackgroundColor);
-            } else {
-                Random rnd = new Random();
-                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                v.setBackgroundColor(color);
             }
 
             v.setLayoutParams(params);
