@@ -1,5 +1,6 @@
 package com.wenchao.cardstack;
 
+import android.content.res.TypedArray;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -18,6 +19,7 @@ import android.database.DataSetObserver;
 
 
 public class CardStack extends RelativeLayout {
+    private int mColor = -1;
     private int mIndex = 0;
     private int mNumVisible = 4;
     private ArrayAdapter<?> mAdapter;
@@ -38,27 +40,26 @@ public class CardStack extends RelativeLayout {
         // 2 | 3
         // swipe distance, most likely be used with height and width of a view ;
 
-        public boolean swipeEnd(int section,float distance);
-        public boolean swipeStart(int section,float distance);
-        public boolean swipeContinue(int section, float distanceX,float distanceY );
-        public void discarded(int mIndex, int direction);
-        public void topCardTapped();
+        boolean swipeEnd(int section,float distance);
+        boolean swipeStart(int section,float distance);
+        boolean swipeContinue(int section, float distanceX,float distanceY );
+        void discarded(int mIndex, int direction);
+        void topCardTapped();
     }
 
     public void discardTop(final int direction){
-        mCardAnimator.discard(direction, new AnimatorListenerAdapter(){
+        mCardAnimator.discard(direction, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator arg0) {
                 mCardAnimator.initLayout();
                 mIndex++;
-                mEventListener.discarded(mIndex,direction);
+                mEventListener.discarded(mIndex, direction);
 
                 //mIndex = mIndex%mAdapter.getCount();
                 loadLast();
 
                 viewCollection.get(0).setOnTouchListener(null);
-                viewCollection.get(viewCollection.size()-1)
-                        .setOnTouchListener(mOnTouchListener);
+                viewCollection.get(viewCollection.size() - 1).setOnTouchListener(mOnTouchListener);
             }
         });
     }
@@ -71,6 +72,12 @@ public class CardStack extends RelativeLayout {
     //only necessary when I need the attrs from xml, this will be used when inflating layout
     public CardStack(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        if (attrs != null) {
+            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CardStack);
+            mColor = array.getColor(R.styleable.CardStack_backgroundColor, mColor);
+            array.recycle();
+        }
 
         //String sMyValue = attrs.getAttributeValue( "http://schemas.android.com/apk/res/android", "padding" );
         //get attrs assign minVisiableNum
@@ -120,7 +127,7 @@ public class CardStack extends RelativeLayout {
     }
     private void setupAnimation(){
         final View cardView = viewCollection.get(viewCollection.size()-1);
-        mCardAnimator = new CardAnimator(viewCollection);
+        mCardAnimator = new CardAnimator(viewCollection, mColor);
         mCardAnimator.initLayout();
 
         final DragGestureDetector dd = new DragGestureDetector(CardStack.this.getContext(),new DragGestureDetector.DragListener(){
@@ -223,6 +230,10 @@ public class CardStack extends RelativeLayout {
         adapter.registerDataSetObserver(mOb);
 
         loadData();
+    }
+
+    public ArrayAdapter getAdapter() {
+        return mAdapter;
     }
 
     private void loadData(){

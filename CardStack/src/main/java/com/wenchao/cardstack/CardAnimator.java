@@ -18,11 +18,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+
 import static com.wenchao.cardstack.CardUtils.*;
 
 public class CardAnimator{
     private static final String DEBUG_TAG = "CardAnimator";
     private static final int REMOTE_DISTANCE = 1000;
+    private int mBackgroundColor;
     public ArrayList<View> mCardCollection;
     private float mRotation;
     private HashMap<View,RelativeLayout.LayoutParams> mLayoutsMap;
@@ -30,8 +32,9 @@ public class CardAnimator{
     private RelativeLayout.LayoutParams baseLayout;
     private int mStackMargin=20;
 
-    public CardAnimator(ArrayList<View> viewCollection){
+    public CardAnimator(ArrayList<View> viewCollection, int backgroundColor){
         mCardCollection = viewCollection;
+        mBackgroundColor = backgroundColor;
         setup();
 
     }
@@ -45,9 +48,9 @@ public class CardAnimator{
             params.width = LayoutParams.MATCH_PARENT;
             params.height = LayoutParams.MATCH_PARENT;
 
-            Random rnd = new Random();
-            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            v.setBackgroundColor(color);
+            if(mBackgroundColor != -1) {
+                v.setBackgroundColor(mBackgroundColor);
+            }
 
             v.setLayoutParams(params);
         }

@@ -10,11 +10,7 @@ public class DefaultStackEventListener implements CardStack.CardEventListener {
 
     @Override
     public boolean swipeEnd(int section, float distance) {
-        if(distance > mThreshold){
-            return true;
-        }else{
-            return false;
-        }
+        return distance > mThreshold;
     }
 
     @Override
