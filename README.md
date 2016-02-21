@@ -23,7 +23,7 @@ A Demo App is also included in the source.
 Installation
 ---
 Use jitpack
-```
+```groovy
 repositories {
    maven { url "https://jitpack.io" }
 }
@@ -40,7 +40,7 @@ OR manually
 2. put it into your project lib dir, "libs" for example.
 
 3. put following lines to your gradle.build file
-```
+```groovy
 repositories {
     flatDir {
         dirs 'libs'
