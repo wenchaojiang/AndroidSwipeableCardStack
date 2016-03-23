@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-   compile 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.3'
+   compile 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.4'
 }
 ```
 OR manually
