@@ -22,6 +22,7 @@ public class CardStack extends RelativeLayout {
     private int mColor = -1;
     private int mIndex = 0;
     private int mNumVisible = 4;
+    private boolean canSwipe = true;
     private ArrayAdapter<?> mAdapter;
     private OnTouchListener mOnTouchListener;
     private CardAnimator mCardAnimator;
@@ -102,6 +103,10 @@ public class CardStack extends RelativeLayout {
         mContentResource = res;
     }
 
+    public void setCanSwipe(boolean can) {
+        this.canSwipe = can;
+    }
+
     public void reset(boolean resetIndex){
         if(resetIndex) mIndex = 0;
         removeAllViews();
@@ -134,21 +139,25 @@ public class CardStack extends RelativeLayout {
 
             @Override
             public  boolean onDragStart(MotionEvent e1, MotionEvent e2,
-                                    float distanceX, float distanceY) {
-                mCardAnimator.drag(e1,e2,distanceX,distanceY);
+                                        float distanceX, float distanceY) {
+                if (canSwipe) {
+                    mCardAnimator.drag(e1, e2, distanceX, distanceY);
+                }
                 return true;
             }
 
             @Override
             public boolean onDragContinue(MotionEvent e1, MotionEvent e2,
-                                       float distanceX, float distanceY) {
+                                          float distanceX, float distanceY) {
                 float x1 = e1.getRawX();
                 float y1 = e1.getRawY();
                 float x2 = e2.getRawX();
                 float y2 = e2.getRawY();
                 //float distance = CardUtils.distance(x1,y1,x2,y2);
                 final int direction = CardUtils.direction(x1,y1,x2,y2);
-                mCardAnimator.drag(e1,e2,distanceX,distanceY);
+                if (canSwipe) {
+                    mCardAnimator.drag(e1, e2, distanceX, distanceY);
+                }
                 mEventListener.swipeContinue(direction, Math.abs(x2-x1),Math.abs(y2-y1));
                 return true;
             }
@@ -165,25 +174,29 @@ public class CardStack extends RelativeLayout {
 
                 boolean discard = mEventListener.swipeEnd(direction, distance);
                 if(discard){
-                    mCardAnimator.discard(direction, new AnimatorListenerAdapter(){
+                    if (canSwipe) {
+                        mCardAnimator.discard(direction, new AnimatorListenerAdapter() {
 
-                        @Override
-                        public void onAnimationEnd(Animator arg0) {
-                            mCardAnimator.initLayout();
-                            mIndex++;
-                            mEventListener.discarded(mIndex,direction);
+                            @Override
+                            public void onAnimationEnd(Animator arg0) {
+                                mCardAnimator.initLayout();
+                                mIndex++;
+                                mEventListener.discarded(mIndex, direction);
 
-                            //mIndex = mIndex%mAdapter.getCount();
-                            loadLast();
+                                //mIndex = mIndex%mAdapter.getCount();
+                                loadLast();
 
-                            viewCollection.get(0).setOnTouchListener(null);
-                            viewCollection.get(viewCollection.size()-1)
-                                    .setOnTouchListener(mOnTouchListener);
-                        }
+                                viewCollection.get(0).setOnTouchListener(null);
+                                viewCollection.get(viewCollection.size() - 1)
+                                        .setOnTouchListener(mOnTouchListener);
+                            }
 
-                    });
+                        });
+                    }
                 }else{
-                    mCardAnimator.reverse(e1,e2);
+                    if (canSwipe) {
+                        mCardAnimator.reverse(e1, e2);
+                    }
                 }
                 return true;
             }
