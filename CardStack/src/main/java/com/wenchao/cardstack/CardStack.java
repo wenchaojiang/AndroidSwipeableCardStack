@@ -200,6 +200,7 @@ public class CardStack extends RelativeLayout {
             private static final String DEBUG_TAG = "MotionEvents";
             @Override
             public boolean onTouch(View arg0, MotionEvent event) {
+                CardStack.this.requestDisallowInterceptTouchEvent(true);
                 dd.onTouchEvent(event);
                 return true;
             }
