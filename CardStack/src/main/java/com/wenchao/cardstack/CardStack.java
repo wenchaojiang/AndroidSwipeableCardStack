@@ -28,11 +28,8 @@ public class CardStack extends RelativeLayout {
     private CardAnimator mCardAnimator;
     //private Queue<View> mIdleStack = new Queue<View>;
 
-
-
     private CardEventListener mEventListener = new DefaultStackEventListener(300);
-    private int mContentResource = 0;
-
+    private int mContentResource = 0;               // Card res
 
     public interface CardEventListener{
         //section
@@ -140,9 +137,17 @@ public class CardStack extends RelativeLayout {
             @Override
             public  boolean onDragStart(MotionEvent e1, MotionEvent e2,
                                         float distanceX, float distanceY) {
+                float x1 = e1.getRawX();
+                float y1 = e1.getRawY();
+                float x2 = e2.getRawX();
+                float y2 = e2.getRawY();
+                final int direction = CardUtils.direction(x1,y1,x2,y2);
+                float distance = CardUtils.distance(x1,y1,x2,y2);
+
                 if (canSwipe) {
                     mCardAnimator.drag(e1, e2, distanceX, distanceY);
                 }
+                mEventListener.swipeStart(direction, distance);
                 return true;
             }
 
