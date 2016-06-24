@@ -24,7 +24,6 @@ public class CardStack extends RelativeLayout {
     private int mNumVisible = 4;
     private boolean canSwipe = true;
     private ArrayAdapter<?> mAdapter;
-    private OnTouchListener mOnTouchListener;
     private CardAnimator mCardAnimator;
     //private Queue<View> mIdleStack = new Queue<View>;
 
@@ -32,7 +31,7 @@ public class CardStack extends RelativeLayout {
 
     private CardEventListener mEventListener = new DefaultStackEventListener(300);
     private int mContentResource = 0;
-
+    private DragGestureDetector mDragGestureDetector;
 
     public interface CardEventListener{
         //section
@@ -60,7 +59,7 @@ public class CardStack extends RelativeLayout {
                 loadLast();
 
                 viewCollection.get(0).setOnTouchListener(null);
-                viewCollection.get(viewCollection.size() - 1).setOnTouchListener(mOnTouchListener);
+                viewCollection.get(viewCollection.size() - 1).setOnTouchListener(mDragGestureDetector);
             }
         });
     }
@@ -135,7 +134,7 @@ public class CardStack extends RelativeLayout {
         mCardAnimator = new CardAnimator(viewCollection, mColor);
         mCardAnimator.initLayout();
 
-        final DragGestureDetector dd = new DragGestureDetector(CardStack.this.getContext(),new DragGestureDetector.DragListener(){
+        mDragGestureDetector = new DragGestureDetector(CardStack.this.getContext(),new DragGestureDetector.DragListener(){
 
             @Override
             public  boolean onDragStart(MotionEvent e1, MotionEvent e2,
@@ -188,7 +187,7 @@ public class CardStack extends RelativeLayout {
 
                                 viewCollection.get(0).setOnTouchListener(null);
                                 viewCollection.get(viewCollection.size() - 1)
-                                        .setOnTouchListener(mOnTouchListener);
+                                        .setOnTouchListener(mDragGestureDetector);
                             }
 
                         });
@@ -209,15 +208,7 @@ public class CardStack extends RelativeLayout {
         }
         );
 
-        mOnTouchListener = new OnTouchListener() {
-            private static final String DEBUG_TAG = "MotionEvents";
-            @Override
-            public boolean onTouch(View arg0, MotionEvent event) {
-                dd.onTouchEvent(event);
-                return true;
-            }
-        };
-        cardView.setOnTouchListener(mOnTouchListener);
+        cardView.setOnTouchListener(mDragGestureDetector);
     }
 
     private DataSetObserver mOb = new DataSetObserver(){
