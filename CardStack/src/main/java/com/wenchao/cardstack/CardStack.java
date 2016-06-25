@@ -80,7 +80,6 @@ public class CardStack extends RelativeLayout {
             array.recycle();
         }
 
-        //String sMyValue = attrs.getAttributeValue( "http://schemas.android.com/apk/res/android", "padding" );
         //get attrs assign minVisiableNum
         for(int i = 0; i<mNumVisible; i++){
             addContainerViews();
@@ -143,6 +142,13 @@ public class CardStack extends RelativeLayout {
                 if (canSwipe) {
                     mCardAnimator.drag(e1, e2, distanceX, distanceY);
                 }
+                float x1 = e1.getRawX();
+                float y1 = e1.getRawY();
+                float x2 = e2.getRawX();
+                float y2 = e2.getRawY();
+                final int direction = CardUtils.direction(x1, y1, x2, y2);
+                float distance = CardUtils.distance(x1, y1, x2, y2);
+                mEventListener.swipeStart(direction, distance);
                 return true;
             }
 
@@ -153,12 +159,11 @@ public class CardStack extends RelativeLayout {
                 float y1 = e1.getRawY();
                 float x2 = e2.getRawX();
                 float y2 = e2.getRawY();
-                //float distance = CardUtils.distance(x1,y1,x2,y2);
                 final int direction = CardUtils.direction(x1,y1,x2,y2);
                 if (canSwipe) {
                     mCardAnimator.drag(e1, e2, distanceX, distanceY);
                 }
-                mEventListener.swipeContinue(direction, Math.abs(x2-x1),Math.abs(y2-y1));
+                mEventListener.swipeContinue(direction, Math.abs(x2-x1), Math.abs(y2-y1));
                 return true;
             }
 
