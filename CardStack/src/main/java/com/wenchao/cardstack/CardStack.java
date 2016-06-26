@@ -26,9 +26,6 @@ public class CardStack extends RelativeLayout {
     private ArrayAdapter<?> mAdapter;
     private OnTouchListener mOnTouchListener;
     private CardAnimator mCardAnimator;
-    //private Queue<View> mIdleStack = new Queue<View>;
-
-
 
     private CardEventListener mEventListener = new DefaultStackEventListener(300);
     private int mContentResource = 0;
@@ -54,13 +51,11 @@ public class CardStack extends RelativeLayout {
             public void onAnimationEnd(Animator arg0) {
                 mCardAnimator.initLayout();
                 mIndex++;
-                mEventListener.discarded(mIndex, direction);
-
-                //mIndex = mIndex%mAdapter.getCount();
                 loadLast();
 
                 viewCollection.get(0).setOnTouchListener(null);
                 viewCollection.get(viewCollection.size() - 1).setOnTouchListener(mOnTouchListener);
+                mEventListener.discarded(mIndex - 1, direction);
             }
         });
     }
@@ -254,6 +249,10 @@ public class CardStack extends RelativeLayout {
         return mAdapter;
     }
 
+    public View getTopView() {
+        return ((ViewGroup) viewCollection.get(viewCollection.size() - 1)).getChildAt(0);
+    }
+
     private void loadData(){
         for(int i=mNumVisible-1 ; i>=0 ; i--) {
             ViewGroup parent = (ViewGroup) viewCollection.get(i);
@@ -287,7 +286,7 @@ public class CardStack extends RelativeLayout {
             return;
         }
 
-        View child = mAdapter.getView( lastIndex, getContentView(), parent);
+        View child = mAdapter.getView(lastIndex, getContentView(), parent);
         parent.removeAllViews();
         parent.addView(child);
     }
