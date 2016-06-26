@@ -191,8 +191,6 @@ public class CardAnimator{
 
         as.playTogether(aCollection);
         as.start();
-
-
     }
 
     public void reverse(MotionEvent e1, MotionEvent e2){
