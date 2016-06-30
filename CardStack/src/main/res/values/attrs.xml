@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="CardStack">
         <attr name="backgroundColor" format="color"/>
+        <attr name="stackMargin" format="integer" />
     </declare-styleable>
 
 </resources>
