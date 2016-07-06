@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CardStack">
-        <attr name="backgroundColor" format="color"/>
+        <!--卡片背景颜色-->
+        <attr name="card_backgroundColor" format="color"/>
+        <!-- 显示的卡片数量-->
+        <attr name="card_stack_size" format="integer"/>
+        <!--是否无限循环卡片模式-->
+        <attr name="card_enable_loop" format="boolean"/>
+        <!--卡片之间的间距-->
+        <attr name="card_margin" format="dimension"/>
+        <!--卡片拖动时是否跟着旋转-->
+        <attr name="card_enable_rotation" format="boolean"/>
+        <!--卡片方向：向上、向下-->
+        <attr name="card_gravity">
+            <enum name="top" value="48"/>
+            <enum name="bottom" value="80"/>
+        </attr>
     </declare-styleable>
 
 </resources>

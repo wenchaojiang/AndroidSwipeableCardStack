@@ -21,6 +21,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Maven Upload
+    // 集成到实际项目中，请注释下面的代码。
+    uploadArchives {
+        apply plugin: 'maven'
+        repositories.mavenDeployer {
+            snapshotRepository(url: 'http://localhost:8081/repository/maven-rae/rae-cardstack') {
+                authentication(userName: 'rae', password: '123456')
+            }
+
+            repository(url: 'http://localhost:8081/repository/maven-rae/') {
+                authentication(userName: 'rae', password: '123456')
+            }
+
+            pom.project {
+                version '1.0.0'
+                artifactId 'cardstack'
+                groupId 'com.rae.core'
+                packaging 'aar'
+            }
+        }
+
+        task androidSourcesJar(type: Jar) {
+            classifier = 'sources'
+            from android.sourceSets.main.java.sourceFiles
+        }
+        artifacts {
+            archives androidSourcesJar
+        }
+    }
 }
 
 dependencies {
