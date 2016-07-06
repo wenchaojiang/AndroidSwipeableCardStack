@@ -7,9 +7,9 @@ Change log:
 Now it is compatible with api level 14
 Investigating compatibility with api level 13
 
+[中文版说明](https://github.com/raee/AndroidSwipeableCardStack/tree/RAE-DEV)
 
-
-![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image2.png)
+![image](https://github.com/raee/AndroidSwipeableCardStack/raw/RAE-DEV/pics/demo.gif)
 
 
 
