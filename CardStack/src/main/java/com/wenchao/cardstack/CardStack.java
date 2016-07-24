@@ -19,6 +19,10 @@ import android.database.DataSetObserver;
 
 
 public class CardStack extends RelativeLayout {
+
+    public static final int DEFAULT_STACK_MARGIN = 20;
+
+    private int mStackMargin = DEFAULT_STACK_MARGIN;
     private int mColor = -1;
     private int mIndex = 0;
     private int mNumVisible = 4;
@@ -72,6 +76,7 @@ public class CardStack extends RelativeLayout {
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CardStack);
             mColor = array.getColor(R.styleable.CardStack_backgroundColor, mColor);
+            mStackMargin = array.getInteger(R.styleable.CardStack_stackMargin, mStackMargin);
             array.recycle();
         }
 
@@ -89,7 +94,8 @@ public class CardStack extends RelativeLayout {
     }
 
     public void setStackMargin(int margin){
-        mCardAnimator.setStackMargin(margin);
+        mStackMargin = margin;
+        mCardAnimator.setStackMargin(mStackMargin);
         mCardAnimator.initLayout();
     }
 
@@ -126,7 +132,7 @@ public class CardStack extends RelativeLayout {
     }
     private void setupAnimation(){
         final View cardView = viewCollection.get(viewCollection.size()-1);
-        mCardAnimator = new CardAnimator(viewCollection, mColor);
+        mCardAnimator = new CardAnimator(viewCollection, mColor, mStackMargin);
         mCardAnimator.initLayout();
 
         final DragGestureDetector dd = new DragGestureDetector(CardStack.this.getContext(),new DragGestureDetector.DragListener(){

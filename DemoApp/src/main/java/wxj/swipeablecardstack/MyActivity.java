@@ -21,7 +21,7 @@ public class MyActivity extends Activity {
         mCardStack = (CardStack)findViewById(R.id.container);
 
         mCardStack.setContentResource(R.layout.card_content);
-        mCardStack.setStackMargin(20);
+//        mCardStack.setStackMargin(20);
 
         mCardAdapter = new CardsDataAdapter(getApplicationContext());
         mCardAdapter.add("test1");
