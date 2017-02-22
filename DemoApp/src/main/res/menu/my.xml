@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:context=".MyActivity">
     <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="Undo"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>
