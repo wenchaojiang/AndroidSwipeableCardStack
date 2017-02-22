@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="CardStack">
         <attr name="backgroundColor" format="color"/>
         <attr name="stackMargin" format="integer" />
