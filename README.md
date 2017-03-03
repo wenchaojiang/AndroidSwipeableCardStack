@@ -2,6 +2,104 @@ AndroidSwipeableCardStack
 =========================
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidSwipeableCardStack-green.svg?style=true)](https://android-arsenal.com/details/1/2724)
 
+##RAE Change log:
+
+- 添加循环滚动
+- 添加旋转配置
+- 添加卡片方向配置
+
+##RAE Configuration
+
+可以在布局文件进行初始化配置：
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MyActivity">
+
+    <com.wenchao.cardstack.CardStack
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:padding="10dp"
+        app:card_enable_loop="true"
+        app:card_enable_rotation="true"
+        app:card_gravity="top"
+        app:card_margin="10dp"
+        app:card_stack_size="4"/>
+
+</RelativeLayout>
+
+```
+
+配置参数说明：
+
+
+```xml
+   <declare-styleable name="CardStack">
+        <!--卡片背景颜色-->
+        <attr name="card_backgroundColor" format="color"/>
+        <!-- 显示的卡片数量-->
+        <attr name="card_stack_size" format="integer"/>
+        <!--是否无限循环卡片模式-->
+        <attr name="card_enable_loop" format="boolean"/>
+        <!--卡片之间的间距-->
+        <attr name="card_margin" format="dimension"/>
+        <!--卡片拖动时是否跟着旋转-->
+        <attr name="card_enable_rotation" format="boolean"/>
+        <!--卡片方向：向上、向下-->
+        <attr name="card_gravity">
+            <enum name="top" value="48"/>
+            <enum name="bottom" value="80"/>
+        </attr>
+    </declare-styleable>
+```
+
+也可以在代码中设置：
+```java
+
+	// 重置
+	if (id == R.id.action_reset) {
+	    mCardStack.reset(true);
+	    return true;
+	}
+	
+	// 底部
+	if (id == R.id.action_bottom) {
+	    mCardStack.setStackGravity(mCardStack.getStackGravity() == CardAnimator.TOP ? CardAnimator.BOTTOM : CardAnimator.TOP);
+	    mCardStack.reset(true);
+	    return true;
+	}
+	
+	// 循环
+	if (id == R.id.action_loop) {
+	    mCardStack.setEnableLoop(!mCardStack.isEnableLoop());
+	    mCardStack.reset(true);
+	}
+	
+	// 是否允许旋转
+	if (id == R.id.action_rotation) {
+	    mCardStack.setEnableRotation(!mCardStack.isEnableRotation());
+	    mCardStack.reset(true);
+	}
+	
+	// 可见个数
+	if (id == R.id.action_visibly_size) {
+	    mCardStack.setVisibleCardNum(mCardStack.getVisibleCardNum() + 1);
+	}
+	
+	// 间隔
+	if (id == R.id.action_span) {
+	    mCardStack.setStackMargin(mCardStack.getStackMargin() + 10);
+	}
+
+```
 
 Change log:
 Now it is compatible with api level 14
@@ -9,7 +107,7 @@ Investigating compatibility with api level 13
 
 
 
-![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image2.png)
+![image](https://github.com/raee/AndroidSwipeableCardStack/raw/RAE-DEV/pics/demo.gif)
 
 
 

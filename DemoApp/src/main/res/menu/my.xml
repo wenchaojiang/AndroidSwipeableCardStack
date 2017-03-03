@@ -1,9 +1,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context=".MyActivity">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MyActivity">
+    <item
+        android:id="@+id/action_reset"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:title="重置"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_loop"
+        android:orderInCategory="100"
+        android:title="循环滚动"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/action_rotation"
+        android:orderInCategory="100"
+        android:title="旋转"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_span"
+        android:orderInCategory="100"
+        android:title="增加间距"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_visibly_size"
+        android:orderInCategory="100"
+        android:title="增加显示卡片个数"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_bottom"
+        android:orderInCategory="100"
+        android:title="底部"
+        app:showAsAction="never"/>
 </menu>
