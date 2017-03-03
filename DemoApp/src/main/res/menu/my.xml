@@ -5,37 +5,41 @@
     <item
         android:id="@+id/action_reset"
         android:orderInCategory="100"
-        android:title="重置"
+        android:title="reset"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_loop"
         android:orderInCategory="100"
-        android:title="循环滚动"
+        android:title="infinite swipe"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/action_settings"
+        android:title="Undo"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_rotation"
         android:orderInCategory="100"
-        android:title="旋转"
+        android:title="card roation"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_span"
         android:orderInCategory="100"
-        android:title="增加间距"
+        android:title="more card spacing"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_visibly_size"
         android:orderInCategory="100"
-        android:title="增加显示卡片个数"
+        android:title="more visible card"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_bottom"
         android:orderInCategory="100"
-        android:title="底部"
+        android:title="stack orientation"
         app:showAsAction="never"/>
 </menu>
