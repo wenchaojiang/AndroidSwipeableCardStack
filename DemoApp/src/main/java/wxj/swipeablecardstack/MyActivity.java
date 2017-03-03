@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.wenchao.cardstack.CardAnimator;
 import com.wenchao.cardstack.CardStack;
 
 
@@ -18,7 +19,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        mCardStack = (CardStack)findViewById(R.id.container);
+        mCardStack = (CardStack) findViewById(R.id.container);
 
         mCardStack.setContentResource(R.layout.card_content);
 //        mCardStack.setStackMargin(20);
@@ -29,10 +30,12 @@ public class MyActivity extends Activity {
         mCardAdapter.add("test3");
         mCardAdapter.add("test4");
         mCardAdapter.add("test5");
+//        mCardAdapter.add("test6");
+//        mCardAdapter.add("test7");
 
         mCardStack.setAdapter(mCardAdapter);
 
-        if(mCardStack.getAdapter() != null) {
+        if (mCardStack.getAdapter() != null) {
             Log.i("MyActivity", "Card Stack size: " + mCardStack.getAdapter().getCount());
         }
     }
@@ -45,15 +48,50 @@ public class MyActivity extends Activity {
         return true;
     }
 
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        // 重置
+        if (id == R.id.action_reset) {
+            mCardStack.reset(true);
             return true;
         }
+
+        // 底部
+        if (id == R.id.action_bottom) {
+            mCardStack.setStackGravity(mCardStack.getStackGravity() == CardAnimator.TOP ? CardAnimator.BOTTOM : CardAnimator.TOP);
+            mCardStack.reset(true);
+            return true;
+        }
+
+        // 循环
+        if (id == R.id.action_loop) {
+            mCardStack.setEnableLoop(!mCardStack.isEnableLoop());
+            mCardStack.reset(true);
+        }
+
+        // 是否允许旋转
+        if (id == R.id.action_rotation) {
+            mCardStack.setEnableRotation(!mCardStack.isEnableRotation());
+            mCardStack.reset(true);
+        }
+
+        // 可见个数
+        if (id == R.id.action_visibly_size) {
+            mCardStack.setVisibleCardNum(mCardStack.getVisibleCardNum() + 1);
+        }
+
+        // 间隔
+        if (id == R.id.action_span) {
+            mCardStack.setStackMargin(mCardStack.getStackMargin() + 10);
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 }

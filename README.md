@@ -4,12 +4,13 @@ AndroidSwipeableCardStack
 
 
 Change log:
-Now it is compatible with api level 14
-Investigating compatibility with api level 13
 
+- provide option to infinitly swipe in a loop
+- card rotation setting
 
+Thanks contribution from RAE
 
-![image](https://raw.githubusercontent.com/wenchaojiang/AndroidSwipeableCardStack/master/pics/image2.png)
+![image](https://github.com/raee/AndroidSwipeableCardStack/raw/RAE-DEV/pics/demo.gif)
 
 
 
@@ -48,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    compile(name:'android-card-stack-0.1.0', ext:'aar')
+    compile(name:'android-card-stack-0.*.*', ext:'aar')
 }
 ```
 
@@ -59,14 +60,19 @@ Configuration
 Put CardStack in your layout file
 
 ```xml
- <com.wenchao.cardstack.CardStack
+<com.wenchao.cardstack.CardStack
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding = "20dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-    />
+        android:gravity="center"
+        android:padding="10dp"
+        app:card_enable_loop="true"
+        app:card_enable_rotation="true"
+        app:card_gravity="top"
+        app:card_margin="10dp"
+        app:card_stack_size="4"/>
 ```
 
 Create your card view layout file.
@@ -178,9 +184,3 @@ Class YourListener extends CardStack.CardEventListener{
 }
 ```
 
-
-TODO
-----
-
-1. deploy to maven central
-2. compatibility with api level 13
