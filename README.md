@@ -7,8 +7,13 @@ Change log:
 
 - provide option to infinitly swipe in a loop
 - card rotation setting
+- card gravity setting
+- undo animation
 
-Thanks contribution from RAE
+Thanks for contributions from:
+https://github.com/raee
+https://github.com/rebus007
+ 
 
 ![image](https://github.com/raee/AndroidSwipeableCardStack/raw/RAE-DEV/pics/demo.gif)
 
