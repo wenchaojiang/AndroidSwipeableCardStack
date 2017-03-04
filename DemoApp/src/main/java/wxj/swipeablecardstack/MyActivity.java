@@ -30,8 +30,8 @@ public class MyActivity extends Activity {
         mCardAdapter.add("test3");
         mCardAdapter.add("test4");
         mCardAdapter.add("test5");
-//        mCardAdapter.add("test6");
-//        mCardAdapter.add("test7");
+        mCardAdapter.add("test6");
+        mCardAdapter.add("test7");
 
         mCardStack.setAdapter(mCardAdapter);
 
@@ -89,6 +89,10 @@ public class MyActivity extends Activity {
         // 间隔
         if (id == R.id.action_span) {
             mCardStack.setStackMargin(mCardStack.getStackMargin() + 10);
+        }
+
+        if (id == R.id.action_settings) {
+            mCardStack.undo();
         }
 
 

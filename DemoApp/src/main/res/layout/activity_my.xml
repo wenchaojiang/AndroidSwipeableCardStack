@@ -13,10 +13,10 @@
         android:clipToPadding="false"
         android:gravity="center"
         android:padding="10dp"
-        app:card_enable_loop="true"
+        app:card_enable_loop="false"
         app:card_enable_rotation="true"
         app:card_gravity="top"
-        app:card_margin="10dp"
+        app:card_margin="20dp"
         app:card_stack_size="4"/>
 
 </RelativeLayout>

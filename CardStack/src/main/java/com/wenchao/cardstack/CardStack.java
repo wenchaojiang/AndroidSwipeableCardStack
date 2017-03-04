@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -151,15 +153,19 @@ public class CardStack extends RelativeLayout {
 
         //get attrs assign minVisiableNum
         for (int i = 0; i < mNumVisible; i++) {
-            addContainerViews();
+            addContainerViews(false);
         }
         setupAnimation();
     }
 
-    private void addContainerViews() {
+    private void addContainerViews(boolean anim) {
         FrameLayout v = new FrameLayout(getContext());
         viewCollection.add(v);
         addView(v);
+        if (anim) {
+            Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.undo_anim);
+            v.startAnimation(animation);
+        }
     }
 
     public void setStackMargin(int margin) {
@@ -182,11 +188,15 @@ public class CardStack extends RelativeLayout {
     }
 
     public void reset(boolean resetIndex) {
+        reset(resetIndex, false);
+    }
+
+    private void reset(boolean resetIndex, boolean animFirst) {
         if (resetIndex) mIndex = 0;
         removeAllViews();
         viewCollection.clear();
         for (int i = 0; i < mNumVisible; i++) {
-            addContainerViews();
+            addContainerViews(i == mNumVisible - 1 && animFirst);
         }
         setupAnimation();
         loadData();
@@ -210,10 +220,10 @@ public class CardStack extends RelativeLayout {
 
     private void setupAnimation() {
         final View cardView = viewCollection.get(viewCollection.size() - 1);
-        mCardAnimator = new CardAnimator(viewCollection, mColor);
+        mCardAnimator = new CardAnimator(viewCollection, mColor, mMargin);
         mCardAnimator.setGravity(mGravity);
         mCardAnimator.setEnableRotation(mEnableRotation);
-        mCardAnimator.setStackMargin(mMargin);
+        //mCardAnimator.setStackMargin(mMargin);
         mCardAnimator.initLayout();
 
         final DragGestureDetector dd = new DragGestureDetector(CardStack.this.getContext(), new DragGestureDetector.DragListener() {
@@ -396,5 +406,11 @@ public class CardStack extends RelativeLayout {
      */
     public int getVisibleCardNum() {
         return mNumVisible;
+    }
+
+    public void undo() {
+        if (mIndex == 0) return;
+        mIndex --;
+        reset(false, true);
     }
 }

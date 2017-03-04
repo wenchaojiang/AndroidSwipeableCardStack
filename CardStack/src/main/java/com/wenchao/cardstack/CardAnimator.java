@@ -35,13 +35,14 @@ public class CardAnimator {
     private HashMap<View, RelativeLayout.LayoutParams> mLayoutsMap;
     private RelativeLayout.LayoutParams[] mRemoteLayouts = new RelativeLayout.LayoutParams[4];
     private RelativeLayout.LayoutParams baseLayout;
-    private int mStackMargin = 20;
+    private int mStackMargin;
     private int mGravity = BOTTOM;
     private boolean mEnableRotation; // 是否允许旋转
 
-    public CardAnimator(ArrayList<View> viewCollection, int backgroundColor) {
+    public CardAnimator(ArrayList<View> viewCollection, int backgroundColor, int margin) {
         mCardCollection = viewCollection;
         mBackgroundColor = backgroundColor;
+        mStackMargin = margin;
         setup();
     }
 
@@ -65,16 +66,6 @@ public class CardAnimator {
         baseLayout = (RelativeLayout.LayoutParams) mCardCollection.get(0).getLayoutParams();
         baseLayout = cloneParams(baseLayout);
 
-//        initLayout();
-//
-//        for (View v : mCardCollection) {
-//            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
-//            RelativeLayout.LayoutParams paramsCopy = cloneParams(params);
-//            mLayoutsMap.put(v, paramsCopy);
-//        }
-//
-//        setupRemotes();
-
     }
 
     public void initLayout() {
@@ -93,7 +84,8 @@ public class CardAnimator {
             move(v, mGravity == TOP ? -margin : margin, 0);
             v.setRotation(0);
 
-            RelativeLayout.LayoutParams paramsCopy = cloneParams(params);
+            RelativeLayout.LayoutParams paramsCopy =
+                    cloneParams((RelativeLayout.LayoutParams) v.getLayoutParams());
             mLayoutsMap.put(v, paramsCopy);
         }
 
