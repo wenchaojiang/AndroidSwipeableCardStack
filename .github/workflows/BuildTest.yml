@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-reports
-          path: 'CardStack/build/reports/tests/'
+          path: 'DemoApp/build/reports/tests/'
 
   android_test_job:
     name: Android Tests
@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: android-test-reports
-          path: 'CardStack/build/reports/androidTests/'
+          path: 'DemoApp/build/reports/androidTests/'
 
   build_job:
     name: Building the APK
@@ -109,5 +109,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: CardStackView
-          path: CardStack/build/outputs/apk/debug/**.apk
+          name: AndroidSwipeableCardStack
+          path: DemoApp/build/outputs/apk/debug/**.apk
