@@ -109,5 +109,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: AndroidSwipeableCardStack
+          name: AndroidSwipeableCardStackAPK
           path: DemoApp/build/outputs/apk/debug/**.apk
